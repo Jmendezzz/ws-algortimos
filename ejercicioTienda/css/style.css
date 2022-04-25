@@ -1,0 +1,83 @@
+*{
+    padding:0;
+    margin: 0;
+}
+
+.flex-container{
+    background-image: url("/images/tiendas.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 50%;
+    margin: 20px;
+    padding: 10px;
+    outline: 2px solid black;
+}
+.container__header{
+    margin: 20px;
+}
+.button__bono{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    border-radius: .5em;
+    border: 1px solid blue;
+}
+.button__bono:hover{
+    background-color: rgb(6, 101, 179);
+    cursor: pointer;
+    color: white;
+}
+.inventario{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.inventario__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    margin:20px;
+    
+}
+.inventario__img img{
+    width: 20vw;
+    height: 30vh;
+    object-fit: cover;
+    border: 1px solid black;
+}
+.inventario__button{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    border-radius: .5em;
+    border: 1px solid blue;
+}
+.inventario__button:hover{
+    background-color: rgb(6, 101, 179);
+    cursor: pointer;
+    color: white;
+}
+#button-pagar{
+    width: 100%;
+}

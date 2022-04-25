@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="flex-container">
+
+        <div class="container">
+            <div class="container__header">
+                <h1>LA TIENDA</h1>
+            </div>
+            <button class="button__bono">
+                ¡BONO DE REGALO PRESIONA AQUÍ!
+            </button>
+            
+            <div class="inventario">
+
+                <div class="inventario__container" id="huevos">
+                    <div class="inventario__header">
+                        <h3>Huevos</h3>
+                    </div>
+                    <div class="inventario__cantidad">
+                        <p>Unidades:<b id="cantidad-huevos"></b></p>
+                        <p>$15000</p>
+                    </div>
+                    <div class="inventario__img">
+                        <img src="/images/huevos.jpg">
+                    </div>
+                    
+                        <button class="button__bono" id="boton-huevos">Comprar</button>
+        
+                </div>
+                <div class="inventario__container" id="leche">
+                    <div class="inventario__header">
+                        <h3>Leche</h3>
+                    </div>
+                    <div class="inventario__cantidad">
+                        <p>Unidades:<b id="cantidad-leche"></b></p>
+                        <p>$3500</p>
+                    </div>
+                    <div class="inventario__img">
+                        <img src="/images/leche.JPG">
+                    </div>
+                
+                    <button class="button__bono" id="boton-leche">Comprar</button>
+
+                </div>
+                </div>
+                <div class="inventario">
+                    <div class="inventario__container" id="pan">
+                        <div class="inventario__header">
+                            <h3>Pan</h3>
+                        </div>
+                        <div class="inventario__cantidad">
+                            <p>Unidades: <b id="cantidad-pan"></b></p>
+                            <p>$2000</p>
+                        </div>
+                        <div class="inventario__img">
+                            <img src="/images/panjpg.jpg">
+                        </div>
+                       
+                        <button class="button__bono" id="boton-pan">Comprar</button>
+
+                    </div>
+                    <div class="inventario__container">
+                        <div class="huevos__header" id="frutas">
+                            <h3>Frutas</h3>
+                        </div>
+                        <div class="inventario__cantidad">
+                            <p>Unidades:<b id="cantidad-frutas"></b></p>
+                            <p>$5000</p>
+                        </div>
+                        <div class="inventario__img">
+                            <img src="/images/frutas.jpg">
+                        </div>
+                        
+                        <button class="button__bono"id="boton-frutas">Comprar</button>
+
+                    </div>
+                </div>
+                <button class="button__bono" id="boton-pagar">Pagar</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="/js/main.js"></script>
+</html>
