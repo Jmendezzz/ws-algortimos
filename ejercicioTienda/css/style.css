@@ -1,6 +1,7 @@
 *{
     padding:0;
     margin: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .flex-container{
@@ -29,6 +30,9 @@
 .container__header{
     margin: 20px;
 }
+.container__header h1{
+    font-size: 60px;
+}
 .button__bono{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: transparent;
@@ -49,8 +53,7 @@
     align-items: center;
     
 }
-.inventario__container{
-    display: flex;
+.inventario__container{display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -78,6 +81,22 @@
     cursor: pointer;
     color: white;
 }
-#button-pagar{
-    width: 100%;
+#boton-pagar{
+    width: 40%;
+    transition: all .5s;
+}
+.carrito{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 40px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.carrito img{
+    width: 40px;
+    height:40px;
+}
+.inventario__header{
+    font-size: 40px;
+    color: rgb(105, 155, 230);
 }

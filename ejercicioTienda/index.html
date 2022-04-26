@@ -5,18 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="flex-container">
 
         <div class="container">
-            <div class="container__header">
+            <div class="container__header"> 
                 <h1>LA TIENDA</h1>
             </div>
             <button class="button__bono">
                 ¡BONO DE REGALO PRESIONA AQUÍ!
             </button>
+            <div class="carrito">
+                <p id="carro-count">:</p>
+                <img src="images/carrito-de-compras.png">
+            </div>
             
             <div class="inventario">
 
@@ -29,7 +33,7 @@
                         <p>$15000</p>
                     </div>
                     <div class="inventario__img">
-                        <img src="/images/huevos.jpg">
+                        <img src="images/huevos.jpg">
                     </div>
                     
                         <button class="button__bono" id="boton-huevos">Comprar</button>
@@ -44,7 +48,7 @@
                         <p>$3500</p>
                     </div>
                     <div class="inventario__img">
-                        <img src="/images/leche.JPG">
+                        <img src="images/leche.JPG">
                     </div>
                 
                     <button class="button__bono" id="boton-leche">Comprar</button>
@@ -61,14 +65,14 @@
                             <p>$2000</p>
                         </div>
                         <div class="inventario__img">
-                            <img src="/images/panjpg.jpg">
+                            <img src="images/panjpg.jpg">
                         </div>
                        
                         <button class="button__bono" id="boton-pan">Comprar</button>
 
                     </div>
                     <div class="inventario__container">
-                        <div class="huevos__header" id="frutas">
+                        <div class="inventario__header" id="frutas">
                             <h3>Frutas</h3>
                         </div>
                         <div class="inventario__cantidad">
@@ -76,18 +80,27 @@
                             <p>$5000</p>
                         </div>
                         <div class="inventario__img">
-                            <img src="/images/frutas.jpg">
+                            <img src="images/frutas.jpg">
                         </div>
                         
                         <button class="button__bono"id="boton-frutas">Comprar</button>
 
                     </div>
                 </div>
+
+
+
                 <button class="button__bono" id="boton-pagar">Pagar</button>
+
+
+                
             </div>
+
+
+            
         </div>
     </div>
-    
+    <script src="js/main.js"></script> 
 </body>
-<script src="/js/main.js"></script>
+
 </html>
