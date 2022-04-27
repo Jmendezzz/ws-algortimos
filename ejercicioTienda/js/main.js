@@ -21,14 +21,17 @@ function descuento(){
         desc=desc/100;
         return desc;
     }else
-    alert("Usted ya canjeó su descuento!");
-    
+    alert("Usted ya canjeó su descuento! O intento pagar sin aplicar el descuento");
 }
-let numDesc;
+
+let numDesc=0;
 
 descuentoBoton.addEventListener("click",()=>{
+
     numDesc=descuento();
+
 });
+
 let arrayPrecios=[15000,35000,2000,5000];
 let arrayProductos=[30,20,50,50];
 cantidadHuevos.innerHTML=arrayProductos[0];
@@ -38,61 +41,80 @@ cantidadFrutas.innerHTML=arrayProductos[3];
 let totPagar=0;
 let contCompras=0;
 countCarro.innerHTML=`:${contCompras}`;
+console.log(totPagar);
 
-function comprarHuevos(arrayProductos,arrayPrecios){
-    if(arrayProductos[0]>0){
-        arrayProductos[0]=arrayProductos[0]-1;
-        totPagar=totPagar+arrayPrecios[0];
-        contCompras++;
-        countCarro.innerHTML=`:${contCompras}`;
-        cantidadHuevos.innerHTML=arrayProductos[0];
-    }else cantidadHuevos.innerHTML="Producto agotado";
+function getValues(num,arrayProductos,arrayPrecios){
+    arrayProductos[num]=arrayProductos[num]-1;
+    totPagar=totPagar+arrayPrecios[num];
+    contCompras++;
 }
-function comprarLeche(arrayProductos,arrayPrecios){
-    if(arrayProductos[1]>0){
-        arrayProductos[1]=arrayProductos[1]-1;
-        totPagar=totPagar+arrayPrecios[1];
-        contCompras++;
-        countCarro.innerHTML=`:${contCompras}`;
-        cantidadLeche.innerHTML=arrayProductos[1];
-    }else cantidadLeche.innerHTML="Producto agotado";
+function pushHTML(num){
+    switch(num){
+        case 0:
+            countCarro.innerHTML=`:${contCompras}`;
+            cantidadHuevos.innerHTML=arrayProductos[0];
+            break;
+        case 1:
+            countCarro.innerHTML=`:${contCompras}`;
+            cantidadLeche.innerHTML=arrayProductos[1];
+            break;
+        case 2:
+            countCarro.innerHTML=`:${contCompras}`;
+            cantidadPan.innerHTML=arrayProductos[2];
+            break;
+        case 3:
+            countCarro.innerHTML=`:${contCompras}`;
+            cantidadFrutas.innerHTML=arrayProductos[3];
+            break;
+    }
+        
 }
+function comprarProducto(num,arrayProductos,arrayPrecios){
+    if(num==0){
 
-function comprarPan(arrayProductos,arrayPrecios){
-    if(arrayProductos[2]>0){
-        arrayProductos[2]=arrayProductos[2]-1;
-        totPagar=totPagar+arrayPrecios[2];
-        contCompras++;
-        countCarro.innerHTML=`:${contCompras}`;
-        cantidadPan.innerHTML=arrayProductos[2];
-    }else cantidadPan.innerHTML="Producto agotado";
-}
+        if(arrayProductos[0]>0){
+            getValues(num,arrayProductos,arrayPrecios);
+            pushHTML(num);
+        }else cantidadHuevos.innerHTML="Producto Agotado"}
+        
+    else if(num==1){
+        if(arrayProductos[1]>0){
+            getValues(num,arrayProductos,arrayPrecios);
+            pushHTML(num);
+        }else cantidadLeche.innerHTML="Producto Agotado"}
+        
+    else if(num==2){
+        if(arrayProductos[2]>0){
+            getValues(num,arrayProductos,arrayPrecios);
+            pushHTML(num);
+        }else cantidadPan.innerHTML="Porducto Agotado"}
+ 
+    else if(num==3){
+        if(arrayProductos[3]>0){
+            getValues(num,arrayProductos,arrayPrecios);
+            pushHTML(num);
+        }else cantidadFrutas.innerHTML="Producto Agotado"}
+    }
 
-function comprarFrutas(arrayProductos,arrayPrecios){
-    if(arrayProductos[3]>0){
-        arrayProductos[3]=arrayProductos[3]-1;
-        totPagar=totPagar+arrayPrecios[3];
-        contCompras++;
-        countCarro.innerHTML=`:${contCompras}`;
-        cantidadFrutas.innerHTML=arrayProductos[3];
-    }else cantidadFrutas.innerHTML="Producto agotado";
-}
 
 botonHuevos.onclick=function(){
-    comprarHuevos(arrayProductos,arrayPrecios);
+    comprarProducto(0,arrayProductos,arrayPrecios);
 }
 botonLeche.onclick=function(){
-    comprarLeche(arrayProductos,arrayPrecios);
+    comprarProducto(1,arrayProductos,arrayPrecios);
 }
 botonPan.onclick=function(){
-    comprarPan(arrayProductos,arrayPrecios);
+    comprarProducto(2,arrayProductos,arrayPrecios);
 }
 botonFrutas.onclick=function(){
-    comprarFrutas(arrayProductos,arrayPrecios);
+    comprarProducto(3,arrayProductos,arrayPrecios);
 }
 
 botonPagar.onclick=function(){
-    if(totPagar>0){
+    if(numDesc==0 && totPagar>0){
+        alert(`Usted no canjeó el descuento por lo tanto tendra que pagar ${totPagar}`)
+        intento=false;
+    }else if (numDesc>0 && totPagar>0){
         let descuentoTotal=totPagar*numDesc;
         totPagar=totPagar-descuentoTotal;
         totPagar=Math.round(totPagar);
