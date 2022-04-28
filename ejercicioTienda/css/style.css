@@ -91,6 +91,7 @@
     color: white;
 }
 #boton-pagar{
+    margin: 20px 0;
     width: 40%;
     transition: all .5s;
 }
@@ -107,5 +108,35 @@
 }
 .inventario__header{
     font-size: 40px;
-    color: rgb(105, 155, 230);
+    color: rgb(86, 106, 136);
 }
+#cont-precio{
+    font-size: 20px;
+    color: rgb(10, 105, 10);
+}
+
+.add-delete-container{
+    margin: 15px;
+}
+.add-delete-container img{
+    width: 40px;
+    height: 40px;
+    transition: all .5s ;
+    border-radius: 3em;
+}
+.add-delete-container img:hover{
+    cursor: pointer;   
+}
+.red:hover{
+    box-shadow: 0 0 5px rgb(255, 0, 0),
+    0 0 10px rgb(253, 0, 0),
+    0 0 30px rgb(245, 0, 0),
+    0 0 100px rgb(255, 0, 0); 
+}
+.green:hover{
+    box-shadow: 0 0 5px rgb(42, 253, 0),
+    0 0 10px rgb(0, 255, 21),
+    0 0 30px rgb(0, 255, 0),
+    0 0 100px rgb(9, 255, 0); 
+}
+

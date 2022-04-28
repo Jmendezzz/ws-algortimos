@@ -18,8 +18,11 @@
                 ¡BONO DE REGALO PRESIONA AQUÍ!
             </button>
             <div class="carrito">
-                <p id="carro-count">:</p>
-                <img src="images/carrito-de-compras.png">
+                <p id="carro-count"></p>
+                <a href="#boton-pagar"><img src="images/carrito-de-compras.png"></a>
+            </div>
+            <div class="cont__precios">
+                <p id="cont-precio"></p>
             </div>
             
             <div class="inventario">
@@ -36,9 +39,13 @@
                         <label for="boton-huevos"><img src="images/huevos.jpg"></label>
                         
                     </div>
-                    
-                        <button class="button__bono" id="boton-huevos">Comprar</button>
-        
+                    <div class="add-delete-container">
+                        
+                        <img id="delete-button-huevos"class="red"src="images/minus-button.png">
+                        <img id="boton-huevos" id="add-button" class="green" src="images/plus.png">
+                        
+                    </div>
+
                 </div>
                 <div class="inventario__container" id="leche">
                     <div class="inventario__header">
@@ -49,10 +56,15 @@
                         <p>$3500</p>
                     </div>
                     <div class="inventario__img">
-                        <img src="images/leche.JPG">
+                        <label for="boton-leche"><img src="images/leche.JPG"></label>
                     </div>
-                
-                    <button class="button__bono" id="boton-leche">Comprar</button>
+
+                    <div class="add-delete-container">
+                        
+                        <img id="delete-button-leche"class="red"src="images/minus-button.png">
+                        <img id="boton-leche" id="add-button"class="green" src="images/plus.png">
+                        
+                    </div>
 
                 </div>
                 </div>
@@ -66,10 +78,15 @@
                             <p>$2000</p>
                         </div>
                         <div class="inventario__img">
-                            <img src="images/panjpg.jpg">
+                            <label for="boton-pan"><img src="images/panjpg.jpg"></label>
                         </div>
-                       
-                        <button class="button__bono" id="boton-pan">Comprar</button>
+
+                        <div class="add-delete-container">
+                        
+                            <img id="delete-button-pan"class="red" src="images/minus-button.png">
+                            <img id="boton-pan" id="add-button"class="green" src="images/plus.png">
+                            
+                        </div>
 
                     </div>
                     <div class="inventario__container">
@@ -77,18 +94,25 @@
                             <h3>Frutas</h3>
                         </div>
                         <div class="inventario__cantidad">
+
                             <p>Unidades:<b id="cantidad-frutas"></b></p>
                             <p>$5000</p>
                         </div>
                         <div class="inventario__img">
-                            <img src="images/frutas.jpg">
+
+                            <label for="boton-frutas"><img src="images/frutas.jpg"></label>
+
                         </div>
+
+                        <div class="add-delete-container">
                         
-                        <button class="button__bono"id="boton-frutas">Comprar</button>
+                            <img id="delete-button-frutas" class="red"src="images/minus-button.png">
+                            <img id= "boton-frutas" id="add-button"class="green" src="images/plus.png">
+                            
+                        </div>
 
                     </div>
                 </div>
-
 
 
                 <button class="button__bono" id="boton-pagar">Pagar</button>
