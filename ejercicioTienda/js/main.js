@@ -170,7 +170,7 @@ botonPagar.onclick=function(){
         let descuentoTotal=totPagar*numDesc;
         totPagar=totPagar-descuentoTotal;
         totPagar=Math.round(totPagar);
-        alert(`Gracias al descuento del ${descuentoTotal} solo tendras que pagar ${totPagar}`);
+        alert(`Gracias al descuento de ${descuentoTotal} solo tendras que pagar ${totPagar}`);
     }else alert("Usted no ha comprado nada!");
 }
 
