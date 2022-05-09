@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h1>EL SOFTWARE DEL PROFE</h1>
+        <div class="form-1">
+
+            <div class="estudiantes">
+
+                <h2 class="titulos">Añadir estudiantes y notas</h2>
+                
+                <div class="estudiantes__inf">
+
+                    <input type="text" placeholder="Ingrese el nombre" class="inputs" id="input-nombres">
+                    <input type="text" placeholder="Ingrese la nota" class="inputs" id="input-notas">
+
+                    <button class="botones" id="boton-nombres">Añadir</button>
+
+                </div>
+
+            </div>
+
+            <div class="estudiantes">
+
+                <h2 class="titulos">Informe nota mas alta</h2>
+
+
+                <div class="estudiantes__inf">
+                    <button class="botones" id="boton-informe">Informe</button>
+                </div>
+
+                
+                
+            </div>
+
+            <div class="estudiantes">
+
+                <h2 class="titulos">Buscar un estudiante</h2>
+
+                <div class="estudiantes__inf">
+
+                    <input type="text" placeholder="Ingrese el nombre" class="inputs" id="nombre-estudiante">
+
+                    <button class="botones" id="boton-busqueda">Buscar</button>
+                    
+                </div>
+
+            </div>
+
+            <div class="estudiantes">
+
+                <h2 class="titulos">Promedio estudiantes</h2>
+
+                <div class="estudiantes__inf">
+
+
+                    <button class="botones" id="boton-promedio">Sacar el promedio</button>
+                    
+                </div>
+
+            </div>
+            <button class="botones" id="informe-total">Generar informe detallado</button>
+
+            <!-- !APPEND CHILDS -->
+            <div class="estudiantes" id="contenedor-lista">
+                
+            </div>
+
+        </div>
+
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

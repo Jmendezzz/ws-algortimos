@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(16, 161, 240);
+}
+.container h1{
+    color: white;
+    -webkit-text-stroke:1px solid black;
+}
+.form-1{
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    flex-direction: column;
+    border: 1px solid white;
+    width: 50%;
+    padding: 20px;
+    height: 100vh;
+}
+.titulos{
+    color: white;
+    margin: 20px;
+}
+.inputs{
+    border-radius: 3em;
+    border: none;
+    padding:5px
+}
+
+.botones{
+    border-radius: 3em;
+    transition: all 1s;
+    border: none;
+    padding: 5px;
+}
+.botones:hover{
+    background-color: rgb(2, 101, 136);
+    cursor: pointer;
+}
+.estudiantes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.parrafos{
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+#informe-total{
+    margin-top: 30px;
+}
+.estudiantes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
