@@ -96,6 +96,8 @@ agregarF.addEventListener("click", () => {
 
         precioTotal();
 
+        idBotonesAdd();
+
     } else alert("Complete todos los campos!");
 
 })
@@ -108,15 +110,20 @@ buscador.addEventListener("click", () => {
 
     let elementoBuscado = document.getElementById("encontrar").value;
 
-
+    let band=true;
     arrayInfo.forEach((element) => {
         if (element.nombre == elementoBuscado) {
 
             alert(`El producto ${elementoBuscado} se encontró exitosamente`);
-
-        } else alert(`El producto ${elementoBuscado} no se encontró!`);
+            
+            band=false;
+        }
 
     });
+    if(band==true){
+
+        alert(`El producto ${elementoBuscado} no se encontró`);
+    }
 
 });
 
@@ -202,33 +209,44 @@ const mostrarInventario = () => {
         container.appendChild(div);
         div.appendChild(divButtons);
     }
-    var buttonAdds = document.querySelector(".add-buttons");
+    
 }
 
 
+const idBotonesAdd = ()=>{
 
-let arrayBtnAdd = [];
-for(let i = 0 ;i < buttonAdds.lenght; i++){
+    let buttonAdds = document.querySelectorAll(".add-buttons");
+    console.log(buttonAdds);
+    let arrayBtnAdd = [];
+    for(let i = 0 ;i < buttonAdds.lenght; i++){
     buttonAdds[i].addEventListener("click"),()=>{
 
-        buttonAdds[i].id.push(arrayBtnAdd);
+        arrayBtnAdd.push(buttonAdds[i].id);
+    } 
+    addProductos(arrayBtnAdd);
+    }
+}
 
-        if(arrayBtnAdd[i]==buttonAdds[i].id){
+const cambiarElemento = (id)=>{
 
-            arrayInfo[i].cantidad+=1;
-            
+    arrayInfo[id].cantidad+=1;
+    alert("El producto ha sido agragado correctamente");
+
+}
+
+
+const addProductos = (arrayBtnAdd)=>{
+
+    for(let i in arrayBtnAdd){
+
+        switch(lastIndexOf(arrayBtnAdd[i])){
+
+            case lastIndexOf(arrayBtnAdd[i]):
+
+                cambiarElemento(lastIndexOf(arrayBtnAdd[i]));
+
+                break
         }
-    };
-    break
-}  
 
-
-
-(".addButtons").addEventListener("click",()=>{
-
-    let id= this.id;
-
-    arrayInfo[id]=arrayInfo[id]+1;
-
-
-})
+    }
+}
