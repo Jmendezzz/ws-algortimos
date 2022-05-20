@@ -10,19 +10,20 @@ const botonPromedio = document.getElementById("boton-promedio");
 const botonInformeTotal= document.getElementById("informe-total");
 const contenedorLista = document.getElementById("contenedor-lista");
 
-let arrayNames = [];
-let arrayNotas = [];
+let matriz = [];
 
 //!EVENTO DE CLICK EN EL BOTON DE añadir
 botonNombres.onclick=function(){
+    let arreglo= [];
     const nombres = document.getElementById("input-nombres").value;
-    arrayNames.push(nombres);
+    arreglo.unshift(nombres);
     //!PUSH arrayNames ["N"]
     document.getElementById("input-nombres").value = "";
     //!NOTAS
     let notas= document.getElementById("input-notas").value;
     notas = parseInt(notas);
-    arrayNotas.push(notas);
+    arreglo.push(notas);
+    matriz.push(arreglo);
     document.getElementById("input-notas").value = "";
   
 }
@@ -31,23 +32,27 @@ botonNombres.onclick=function(){
 const botonInforme = document.getElementById("boton-informe");
 let mejorNota=0;
 let contador=0;
-let estudiantes=[];
+
 botonInforme.onclick=function(){
 
-    for(let i in arrayNotas){
+    for(let i in matriz){
 
-        if (arrayNotas[i]>mejorNota){
+        for(let j in matriz[i]){
+
+            if (matriz[i][1]>mejorNota){
             
-            mejorNota=arrayNotas[i];
-            
+                mejorNota=matriz[i][1];
+                
+            }
         }
+        
     }
+    let estudiantes=[];
+    for(let i in matriz){
 
-    for(let i in arrayNotas){
-
-        if(arrayNotas[i]==mejorNota){
+        if(matriz[i][1]==mejorNota){
             contador++;
-            estudiantes.push(arrayNames[i]);
+            estudiantes.push(matriz[i][0]);
         }
     }
     alert(`La mejor nota fue: ${mejorNota}, se obtuvo ${contador} veces por los estudiantes: ${estudiantes}`);
@@ -58,11 +63,17 @@ botonBusqueda.onclick=function(){
 
     const nombreEstudiante = document.getElementById("nombre-estudiante").value;
     
-    let indice = arrayNames.indexOf(nombreEstudiante);
+    let indice;
+    for (let i in matriz){
+        for(let j in matriz[i]){
+            let arreglo=matriz[i][0]
+            indice=arreglo.indexOf(nombreEstudiante);
+        }
+    }
 
     if(indice!=-1){
 
-        alert(`Se encontró el estudiante ${arrayNames[indice]} su nota fue: ${arrayNotas[indice]}`);
+        alert(`Se encontró el estudiante ${matriz[indice][0]} su nota fue: ${matriz[indice][1]}`);
 
     }else alert(`No se encontró el estudiante "${nombreEstudiante}"!`)
 }
@@ -71,15 +82,19 @@ botonBusqueda.onclick=function(){
 
 botonPromedio.onclick=function(){
 
-    let numDatos= arrayNotas.length;
+    let numDatos=0;
     
     let sumatoria=0;
     
-    for(let i of arrayNotas){
+    for(let i in matriz){
 
-        sumatoria = sumatoria+i;
-        
-    }
+        for(let j in matriz[i]){
+            
+            sumatoria = sumatoria+matriz[i][1];
+            numDatos++;
+        } //!aca
+         
+    } //!sube
     let promedio=sumatoria/numDatos;
 
     alert(`El promedio de la notas de los estudiantes fue: ${promedio}`)

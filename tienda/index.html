@@ -4,38 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almacen Tienda</title>
+    <title>Gestor de Productos</title>
     <link href="css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <div class="flex-container">
         <div class=nav>
-            <h1>ALMACEN TIENDA</h1>
+            <h1>GESTOR DE PRODUCTOS</h1>
         </div>
         <div class="body">
             
-            <h2>AGREGAR PRODUCTOS</h2>
+            <h2 class="h2-active">AGREGAR PRODUCTOS</h2>
+
             <img src="images/caja.png" class="imagenes">
+
             <div class="form">
-                <select  class="form-item">
-                    <option>Seleccione una categoría...</option>
+                <select  class="form-item" placeholder="Seleecione la categoría">
+                    <option class="option">Seleccione una categoría...</option>
+
                     <option>Tecnologia</option>
+
                     <option>Comida</option>
+
                     <option>Ropa</option>
+
                 </select>   
-                <input class="form-item" type="text" placeholder="Agregue el producto">
-                <input class="form-item" type="number" placeholder="Agregue la cantidad">
-                <input class="form-item" type="number" placeholder="Agregue el precio">
+
+                <input class="form-item" type="text" placeholder="Agregue el producto" required>
+
+                <input class="form-item" type="number" placeholder="Agregue la cantidad" required>
+
+                <input class="form-item" type="number" placeholder="Agregue el precio" required>
+
             </div>
-            <button class="botones">AGREGAR</button>
-            <div class="informe-container">
-                <h2>BUSQUEDA/INFORMES</h2>
-                <div class="form">
-                    <input class="form-item" type="text" placeholder="Busque un producto...">
+            <div class="container-botones">
+
+                <button class="botones">AGREGAR AL PRINCIPIO</button>
+                <button class="botones">AGREGAR</button>
+                <button class="botones">AGREGAR AL FINAL</button>
+
+            </div>
+            <p>Cantidad total de productos:<span id="contador">0</span></p>
+            <h2 class="h2-active">INFORMES</h2>
+            <img class="imagenes" src="images/info.png">
+            <div class="form">
+                <div class="busqueda-container">
+                    <input class="form-item" type="text" placeholder="Busque un producto..." id="encontrar">
+                    <img  src="images/buscarIcono.png" id="buscador">
                 </div>
+
+                <p>Productos por categoía</p>
+                <div class="row-container">
+                    <select  class="form-item" id="productos-categoria" placeholder="Seleecione la categoría">
+
+                        <option class="option">Seleccione una categoría...</option>
+    
+                        <option>Tecnologia</option>
+    
+                        <option>Comida</option>
+    
+                        <option>Ropa</option>
+    
+                    </select>   
+                    <button class="botones" id="boton-informe-categorias">Enviar</button>
+                </div>
+                <p>Valor total de todos los productos  <span class="green">$</span><span id="valor-total" class="green">0</span></p>
+                <p class="p-active">INVENTARIO</p>
+
+                <div class="inventario-container" id="inventario-container">
+            
+                
+                </div>
+                
             </div>
         </div>
         
     </div>
+
+    <script src="js/main.js"></script>
+
 </body>
 </html>
