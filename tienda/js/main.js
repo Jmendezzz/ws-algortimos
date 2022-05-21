@@ -164,11 +164,15 @@ botonCategoria.addEventListener("click",()=>{
 
 const container = document.getElementById("inventario-container");
 let contador=0;
+let pos=0;
 const mostrarInventario = () => {
     let div = document.createElement("DIV");
     div.classList.add("test");
     
+    
     for (let i of arrayInfo) {
+        
+        console.log(pos);
 
         div.innerHTML = "";
 
@@ -220,18 +224,20 @@ const mostrarInventario = () => {
         buttonDel.id=`del-${contador}`;
 
         //!BOTON REMOVER
-        let pos=0;
+        
         let buttonRemove = document.createElement("IMG");
+       
         buttonRemove.addEventListener("click",()=>{
             let opcion = window.confirm("¿Esta seguro de eliminar este producto?");
             if (opcion==true){
-                arrayInfo.splice(pos,pos+1);
+                arrayInfo.splice(pos,1); //////////!! ERROR ///////////
                 alert("Producto eliminado correctamente!");
-                pos++;
                 container.removeChild(div);
+                
             }
            
         });
+        pos++;
         buttonRemove.setAttribute("src","images/remove.png")
         buttonRemove.setAttribute("class","img-buttons")
         buttonRemove.id=`rem-${contador}`;
@@ -244,6 +250,7 @@ const mostrarInventario = () => {
         container.appendChild(div);
         div.appendChild(divButtons);
     }
+    
     
 }
 
