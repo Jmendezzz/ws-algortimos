@@ -160,15 +160,31 @@ p{
 .green{
     color: rgb(11, 91, 11);
 }
-.img-buttons{
+.img-buttons {
 
     width: 35px;
     height: 35px;
     margin: 2px;
     transition: all .4s;
 }
+
+.add-buttons{
+
+    width: 35px;
+    height: 35px;
+    margin: 2px;
+    transition: all .4s;
+}
+.add-buttons:hover{
+    cursor: pointer;
+    transform: translateY(-3.5px);
+}
 .img-buttons:hover{
 
     cursor: pointer;
     transform: translateY(-3.5px);
+}
+#p-bienvenida{
+    font-size: 20px;
+    font-family: sans-serif;
 }

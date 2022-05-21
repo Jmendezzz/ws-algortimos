@@ -57,9 +57,12 @@ agregarP.addEventListener("click", () => {
 
         contProductos();
 
-        mostrarInventario();
+        
 
         precioTotal();
+
+        mostrarInventario();
+
     } else alert("Complete todos los campos!")
 
 })
@@ -75,9 +78,14 @@ agregar.addEventListener("click", () => {
 
         contProductos();
 
-        mostrarInventario();
+       
 
         precioTotal();
+
+        
+
+        mostrarInventario();
+
     } else alert("Complete todos los campos!")
 
 })
@@ -92,11 +100,11 @@ agregarF.addEventListener("click", () => {
 
         contProductos();
 
-        mostrarInventario();
-
         precioTotal();
 
-        idBotonesAdd();
+        
+
+        mostrarInventario();
 
     } else alert("Complete todos los campos!");
 
@@ -114,7 +122,7 @@ buscador.addEventListener("click", () => {
     arrayInfo.forEach((element) => {
         if (element.nombre == elementoBuscado) {
 
-            alert(`El producto ${elementoBuscado} se encontró exitosamente`);
+            alert(`El producto "${elementoBuscado}" se encontró exitosamente`);
             
             band=false;
         }
@@ -122,7 +130,7 @@ buscador.addEventListener("click", () => {
     });
     if(band==true){
 
-        alert(`El producto ${elementoBuscado} no se encontró`);
+        alert(`El producto "${elementoBuscado}" no se encontró`);
     }
 
 });
@@ -135,8 +143,11 @@ const botonCategoria = document.getElementById("boton-informe-categorias");
 botonCategoria.addEventListener("click",()=>{
 
     const categoria=document.getElementById("productos-categoria").value;
-    
-    let cont=0;
+    if(categoria==document.querySelectorAll(".form-item")[0].value){
+
+        alert("Seleccione una categoría válida")
+    }else{
+        let cont=0;
     arrayInfo.forEach(object=>{
 
         if(object.categoria==categoria){
@@ -144,7 +155,9 @@ botonCategoria.addEventListener("click",()=>{
         }    
     })
     cont >0 ? alert(`La categoría ${categoria} tiene ${cont} productos`) : alert(`La categoría ${categoria} no dispone de productos!`);
-})
+    }
+    
+});
 
 //!INVENTARIO
 
@@ -175,7 +188,6 @@ const mostrarInventario = () => {
         li4.innerHTML = `Precio: ${i.precio}`;
         div.appendChild(li4);
 
-
         let divButtons = document.createElement("DIV");
 
         divButtons.classList.add("row-container");
@@ -183,20 +195,43 @@ const mostrarInventario = () => {
 
         //!BOTON AÑADIR
         let buttonAdd =  document.createElement("IMG");
-        buttonAdd.setAttribute("src","images/add.png")
-        buttonAdd.setAttribute("class","add-buttons")
-        buttonAdd.setAttribute("class","img-buttons")
+        buttonAdd.addEventListener("click",()=>{
+
+            i.cantidad+=1;
+            alert("Agregado correctamente!");
+            li3.innerHTML=`Cantidad: ${i.cantidad}`;
+        });
+
+        buttonAdd.setAttribute("src","images/add.png");
+        buttonAdd.setAttribute("class","add-buttons");
         
         buttonAdd.id=`add-${contador}`;
-
+        
         //!BOTON REDUCIR
         let buttonDel = document.createElement("IMG");
+        buttonDel.addEventListener("click",()=>{
+
+            i.cantidad-=1;
+            alert("Eliminado correctamente!");
+            li3.innerHTML=`Cantidad: ${i.cantidad}`;
+        });
         buttonDel.setAttribute("src","images/del.png");
         buttonDel.setAttribute("class","img-buttons");
         buttonDel.id=`del-${contador}`;
 
         //!BOTON REMOVER
+        let pos=0;
         let buttonRemove = document.createElement("IMG");
+        buttonRemove.addEventListener("click",()=>{
+            let opcion = window.confirm("¿Esta seguro de eliminar este producto?");
+            if (opcion==true){
+                arrayInfo.splice(pos,pos+1);
+                alert("Producto eliminado correctamente!");
+                pos++;
+                container.removeChild(div);
+            }
+           
+        });
         buttonRemove.setAttribute("src","images/remove.png")
         buttonRemove.setAttribute("class","img-buttons")
         buttonRemove.id=`rem-${contador}`;
@@ -212,41 +247,22 @@ const mostrarInventario = () => {
     
 }
 
+const ordenarBoton = document.getElementById("ordenar-boton");
 
-const idBotonesAdd = ()=>{
+ordenarBoton.addEventListener("click",()=>{
 
-    let buttonAdds = document.querySelectorAll(".add-buttons");
-    console.log(buttonAdds);
-    let arrayBtnAdd = [];
-    for(let i = 0 ;i < buttonAdds.lenght; i++){
-    buttonAdds[i].addEventListener("click"),()=>{
+    arrayInfo.forEach(object=>{
 
-        arrayBtnAdd.push(buttonAdds[i].id);
-    } 
-    addProductos(arrayBtnAdd);
-    }
-}
+        object.nombre.sort();
+    })
 
-const cambiarElemento = (id)=>{
+})
 
-    arrayInfo[id].cantidad+=1;
-    alert("El producto ha sido agragado correctamente");
+if(localStorage.getItem("usuario")!=null){
+    document.getElementById("p-bienvenida").innerHTML=`Bienvenid@ de nuevo ${localStorage.getItem("usuario")}`;
+  }
+  else{
+    let nombre= prompt("Bienvenid@ ingrese nombre");
+    localStorage.setItem("usuario",nombre);
+  }
 
-}
-
-
-const addProductos = (arrayBtnAdd)=>{
-
-    for(let i in arrayBtnAdd){
-
-        switch(lastIndexOf(arrayBtnAdd[i])){
-
-            case lastIndexOf(arrayBtnAdd[i]):
-
-                cambiarElemento(lastIndexOf(arrayBtnAdd[i]));
-
-                break
-        }
-
-    }
-}
