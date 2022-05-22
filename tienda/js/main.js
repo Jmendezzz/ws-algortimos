@@ -48,7 +48,7 @@ const precioTotal = ()=>{
 let arrayInfo = [];
 //!EVENTO EN BOTON DE AGREGAR PRIMERO ITEM AL INICIO
 agregarP.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != null && document.querySelectorAll(".form-item")[2].value != null && document.querySelectorAll(".form-item")[3].value != null) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value != NaN) {
         let producto = getValues();
 
         arrayInfo.unshift(producto);
@@ -69,7 +69,7 @@ agregarP.addEventListener("click", () => {
 
 //!EVENTO DE AGREGAR ITEM
 agregar.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != null && document.querySelectorAll(".form-item")[2].value != null && document.querySelectorAll(".form-item")[3].value != null) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value != NaN) {
         let producto = getValues();
 
         arrayInfo.push(producto);
@@ -91,7 +91,7 @@ agregar.addEventListener("click", () => {
 })
 //! AGREGAR AL FINAL
 agregarF.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != null && document.querySelectorAll(".form-item")[2].value != null && document.querySelectorAll(".form-item")[3].value != null) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value !=NaN) {
         let producto = getValues();
 
         arrayInfo.push(producto);
@@ -170,7 +170,7 @@ const mostrarInventario = () => {
     div.classList.add("test");
     
     
-    for (let i of arrayInfo) {
+    arrayInfo.forEach((i,index)=>{
         
         console.log(pos);
 
@@ -230,7 +230,7 @@ const mostrarInventario = () => {
         buttonRemove.addEventListener("click",()=>{
             let opcion = window.confirm("¿Esta seguro de eliminar este producto?");
             if (opcion==true){
-                arrayInfo.splice(pos,1); //////////!! ERROR ///////////
+                arrayInfo.splice(index,1); 
                 alert("Producto eliminado correctamente!");
                 container.removeChild(div);
                 
@@ -252,16 +252,23 @@ const mostrarInventario = () => {
     }
     
     
-}
+)};
 
 const ordenarBoton = document.getElementById("ordenar-boton");
 
 ordenarBoton.addEventListener("click",()=>{
 
-    arrayInfo.forEach(object=>{
-
-        object.nombre.sort();
-    })
+    arrayInfo.sort((a,b)=>{
+        if(a.nombre > b.nombre){
+            return 1;
+        }else if(a.nombre < b.nombre){
+            return -1;
+        }else{
+            return 0;
+        } 
+    });
+    alert("Productos organizadors correctamente");
+    mostrarInventario();
 
 })
 
