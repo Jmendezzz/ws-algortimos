@@ -27,11 +27,11 @@ const clearInputs = () => {
     document.querySelectorAll(".form-item")[3].value = "";
 
 }
-let cont = 0;
+
 const contProductos = () => {
 
-    cont++;
-    document.getElementById("contador").innerHTML = cont;
+    
+    document.getElementById("contador").innerHTML = arrayInfo.length;;
 
 }
 const precioTotal = ()=>{
@@ -204,6 +204,8 @@ const mostrarInventario = () => {
             i.cantidad+=1;
             alert("Agregado correctamente!");
             li3.innerHTML=`Cantidad: ${i.cantidad}`;
+            
+
         });
 
         buttonAdd.setAttribute("src","images/add.png");
@@ -218,6 +220,8 @@ const mostrarInventario = () => {
             i.cantidad-=1;
             alert("Eliminado correctamente!");
             li3.innerHTML=`Cantidad: ${i.cantidad}`;
+            
+
         });
         buttonDel.setAttribute("src","images/del.png");
         buttonDel.setAttribute("class","img-buttons");
@@ -233,9 +237,9 @@ const mostrarInventario = () => {
                 arrayInfo.splice(index,1); 
                 alert("Producto eliminado correctamente!");
                 container.removeChild(div);
-                
             }
-           
+            contProductos();
+
         });
         pos++;
         buttonRemove.setAttribute("src","images/remove.png")
