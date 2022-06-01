@@ -29,11 +29,9 @@ const clearInputs = () => {
 }
 
 const contProductos = () => {
-
-    
     document.getElementById("contador").innerHTML = arrayInfo.length;;
-
 }
+
 const precioTotal = ()=>{
     const span = document.getElementById("valor-total");
     let total=0;
@@ -44,22 +42,19 @@ const precioTotal = ()=>{
     })
     span.innerHTML=total;
 }
-//! ARREGLO
+
+//* ARREGLO
 let arrayInfo = [];
+const container = document.getElementById("inventario-container");
+
 //!EVENTO EN BOTON DE AGREGAR PRIMERO ITEM AL INICIO
 agregarP.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value != NaN) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != undefined && document.querySelectorAll(".form-item")[3].value != undefined) {
         let producto = getValues();
 
         arrayInfo.unshift(producto);
 
-        clearInputs();
-
-        contProductos();
-
-        
-
-        precioTotal();
+        clearInputs(); 
 
         mostrarInventario();
 
@@ -76,14 +71,6 @@ agregar.addEventListener("click", () => {
 
         clearInputs();
 
-        contProductos();
-
-       
-
-        precioTotal();
-
-        
-
         mostrarInventario();
 
     } else alert("Complete todos los campos!")
@@ -91,18 +78,12 @@ agregar.addEventListener("click", () => {
 })
 //! AGREGAR AL FINAL
 agregarF.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value !=NaN) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value!=NaN && document.querySelectorAll(".form-item")[3].value!=NaN) {
         let producto = getValues();
 
         arrayInfo.push(producto);
 
         clearInputs();
-
-        contProductos();
-
-        precioTotal();
-
-        
 
         mostrarInventario();
 
@@ -110,28 +91,22 @@ agregarF.addEventListener("click", () => {
 
 })
 
-//!BUSCADOR
+//!BUSCADOR usando .find
 
 const buscador = document.getElementById("buscador");
 
 buscador.addEventListener("click", () => {
 
     let elementoBuscado = document.getElementById("encontrar").value;
-
-    let band=true;
-    arrayInfo.forEach((element) => {
-        if (element.nombre == elementoBuscado) {
-
-            alert(`El producto "${elementoBuscado}" se encontró exitosamente`);
-            
-            band=false;
-        }
-
-    });
-    if(band==true){
-
-        alert(`El producto "${elementoBuscado}" no se encontró`);
+    const encontrarProducto = (producto)=>{
+        return producto.nombre==elementoBuscado;
     }
+    let productoEncontrado=arrayInfo.find(element=>(encontrarProducto(element)));
+
+    if(productoEncontrado!=undefined){
+        alert(`Se encontró el producto "${productoEncontrado.nombre}" cantidades disponibles: ${productoEncontrado.cantidad}, precio: $${productoEncontrado.precio}`);
+    }else alert(`El producto ${elementoBuscado} no se encontró.`)
+    console.log(productoEncontrado);
 
 });
 
@@ -160,20 +135,14 @@ botonCategoria.addEventListener("click",()=>{
 });
 
 //!INVENTARIO
-
-
-const container = document.getElementById("inventario-container");
 let contador=0;
 let pos=0;
 const mostrarInventario = () => {
     let div = document.createElement("DIV");
     div.classList.add("test");
     
-    
     arrayInfo.forEach((i,index)=>{
-        
-        console.log(pos);
-
+       
         div.innerHTML = "";
 
         let li = document.createElement("LI");
@@ -198,65 +167,62 @@ const mostrarInventario = () => {
         
 
         //!BOTON AÑADIR
+
         let buttonAdd =  document.createElement("IMG");
         buttonAdd.addEventListener("click",()=>{
-
             i.cantidad+=1;
             alert("Agregado correctamente!");
             li3.innerHTML=`Cantidad: ${i.cantidad}`;
-            
-
         });
 
         buttonAdd.setAttribute("src","images/add.png");
         buttonAdd.setAttribute("class","add-buttons");
         
-        buttonAdd.id=`add-${contador}`;
         
         //!BOTON REDUCIR
         let buttonDel = document.createElement("IMG");
         buttonDel.addEventListener("click",()=>{
-
             i.cantidad-=1;
             alert("Eliminado correctamente!");
             li3.innerHTML=`Cantidad: ${i.cantidad}`;
-            
-
         });
         buttonDel.setAttribute("src","images/del.png");
         buttonDel.setAttribute("class","img-buttons");
-        buttonDel.id=`del-${contador}`;
+        
 
         //!BOTON REMOVER
-        
         let buttonRemove = document.createElement("IMG");
-       
         buttonRemove.addEventListener("click",()=>{
             let opcion = window.confirm("¿Esta seguro de eliminar este producto?");
             if (opcion==true){
-                arrayInfo.splice(index,1); 
                 alert("Producto eliminado correctamente!");
                 container.removeChild(div);
+                arrayInfo.splice(index,1); 
             }
             contProductos();
+            precioTotal();
 
         });
-        pos++;
-        buttonRemove.setAttribute("src","images/remove.png")
-        buttonRemove.setAttribute("class","img-buttons")
-        buttonRemove.id=`rem-${contador}`;
-        contador++;
         
+        buttonRemove.setAttribute("src","images/remove.png");
+        buttonRemove.setAttribute("class","img-buttons");
     
+        
+       
         divButtons.appendChild(buttonAdd);
         divButtons.appendChild(buttonDel);
         divButtons.appendChild(buttonRemove);
-        container.appendChild(div);
         div.appendChild(divButtons);
-    }
+        container.appendChild(div);
+       
+        
+    });
+    contProductos();
+
+    precioTotal();
     
     
-)};
+};
 
 const ordenarBoton = document.getElementById("ordenar-boton");
 
@@ -271,7 +237,7 @@ ordenarBoton.addEventListener("click",()=>{
             return 0;
         } 
     });
-    alert("Productos organizadors correctamente");
+    alert("Productos organizados correctamente");
     mostrarInventario();
 
 })
