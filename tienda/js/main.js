@@ -55,11 +55,31 @@ const precioTotal = ()=>{
 let arrayInfo = [];
 const container = document.getElementById("inventario-container");
 
+const resetClases = ()=>{
+    for (let i=0; i<4;i++){
+        document.querySelectorAll(".form-item")[i].classList.remove("error");
+    }   
+}
+const addClases = ()=>{
+    if(document.querySelectorAll(".form-item")[0].value ==document.querySelectorAll("option")[0].value){
+        document.querySelectorAll(".form-item")[0].classList.add("error");
+    }else document.querySelectorAll(".form-item")[0].classList.remove("error");
+    
+    if(document.querySelectorAll(".form-item")[1].value==""){
+        document.querySelectorAll(".form-item")[1].classList.add("error");
+    }else document.querySelectorAll(".form-item")[1].classList.remove("error");
 
+    if(document.querySelectorAll(".form-item")[2].value == ""){
+        document.querySelectorAll(".form-item")[2].classList.add("error");
+    }else document.querySelectorAll(".form-item")[2].classList.remove("error");
 
+    if(document.querySelectorAll(".form-item")[3].value == ""){
+        document.querySelectorAll(".form-item")[3].classList.add("error");
+    }else document.querySelectorAll(".form-item")[3].classList.remove("error");
+}
 //!EVENTO EN BOTON DE AGREGAR PRIMERO ITEM AL INICIO
 agregarP.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != undefined && document.querySelectorAll(".form-item")[3].value != undefined) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != "" && document.querySelectorAll(".form-item")[3].value != "") {
         let producto = getValues();
 
         arrayInfo.unshift(producto);
@@ -68,13 +88,17 @@ agregarP.addEventListener("click", () => {
 
         mostrarInventario();
 
-    } else alert("Complete todos los campos!")
+        resetClases();
+    } 
+    else{
+       addClases();
+    } 
 
 })
 
 //!EVENTO DE AGREGAR ITEM
 agregar.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != NaN && document.querySelectorAll(".form-item")[3].value != NaN) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != "" && document.querySelectorAll(".form-item")[3].value != "") {
         let producto = getValues();
 
         arrayInfo.push(producto);
@@ -83,14 +107,17 @@ agregar.addEventListener("click", () => {
 
         mostrarInventario();
 
-    } else alert("Complete todos los campos!")
-
+        resetClases();
+    } 
+    else{
+       addClases();
+    } 
 })
 
 //! AGREGAR AL FINAl
 
 agregarF.addEventListener("click", () => {
-    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value!=NaN && document.querySelectorAll(".form-item")[3].value!=NaN) {
+    if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value != "" && document.querySelectorAll(".form-item")[3].value != "") {
         let producto = getValues();
 
         arrayInfo.push(producto);
@@ -99,8 +126,11 @@ agregarF.addEventListener("click", () => {
 
         mostrarInventario();
 
-    } else alert("Complete todos los campos!");
-
+         resetClases();
+    } 
+    else{
+       addClases();
+    } 
 })
 
 //!BUSCADOR usando .find
@@ -109,15 +139,19 @@ const buscador = document.getElementById("buscador");
 
 buscador.addEventListener("click", () => {
 
-    let elementoBuscado = document.getElementById("encontrar").value;
-    const encontrarProducto = (producto)=>{
+    if(elementoBuscado = document.getElementById("encontrar").value!=""){
+        let elementoBuscado = document.getElementById("encontrar").value;
+        const encontrarProducto = (producto)=>{
         return producto.nombre==elementoBuscado;
     }
+    document.getElementById("encontrar").classList.remove("error");
     let productoEncontrado=arrayInfo.find(element=>(encontrarProducto(element)));
 
     if(productoEncontrado!=undefined){
         alert(`Se encontró el producto "${productoEncontrado.nombre}" cantidades disponibles: ${productoEncontrado.cantidad}, precio: $${productoEncontrado.precio}`);
     }else alert(`El producto ${elementoBuscado} no se encontró.`)
+    }else  document.getElementById("encontrar").classList.add("error");
+    
    
 });
 
@@ -229,7 +263,6 @@ const mostrarInventario = () => {
     contProductos();
 
     precioTotal();
-    
     
 };
 
