@@ -6,7 +6,17 @@ class Producto {
         this.precio = precio;
     }
 }
+try{
 
+    alert(arrayInfo[0]);
+
+}
+catch(err){
+
+    console.log(`El arreglo aún no se ha declarado`);
+    console.log(`El error es ${err}`);
+
+}
 //!BOTONES
 const agregarP = document.querySelectorAll(".botones")[0]; const agregar = document.querySelectorAll(".botones")[1]; const agregarF = document.querySelectorAll(".botones")[2];
 
@@ -31,21 +41,21 @@ const clearInputs = () => {
 const contProductos = () => {
     document.getElementById("contador").innerHTML = arrayInfo.length;;
 }
-
+//!Usando reduce
 const precioTotal = ()=>{
     const span = document.getElementById("valor-total");
-    let total=0;
-    arrayInfo.forEach(object=>{
-
-        total = object.precio+total;
-
-    })
-    span.innerHTML=total;
+    
+    precio = arrayInfo.reduce((acum,producto)=>{
+        return acum+=producto.precio;
+    },0);
+    span.innerHTML=precio;
 }
 
 //* ARREGLO
 let arrayInfo = [];
 const container = document.getElementById("inventario-container");
+
+
 
 //!EVENTO EN BOTON DE AGREGAR PRIMERO ITEM AL INICIO
 agregarP.addEventListener("click", () => {
@@ -54,7 +64,7 @@ agregarP.addEventListener("click", () => {
 
         arrayInfo.unshift(producto);
 
-        clearInputs(); 
+        clearInputs();
 
         mostrarInventario();
 
@@ -76,7 +86,9 @@ agregar.addEventListener("click", () => {
     } else alert("Complete todos los campos!")
 
 })
-//! AGREGAR AL FINAL
+
+//! AGREGAR AL FINAl
+
 agregarF.addEventListener("click", () => {
     if (document.querySelectorAll(".form-item")[0].value != document.querySelectorAll("option")[0].value && document.querySelectorAll(".form-item")[1].value != "" && document.querySelectorAll(".form-item")[2].value!=NaN && document.querySelectorAll(".form-item")[3].value!=NaN) {
         let producto = getValues();
@@ -106,8 +118,7 @@ buscador.addEventListener("click", () => {
     if(productoEncontrado!=undefined){
         alert(`Se encontró el producto "${productoEncontrado.nombre}" cantidades disponibles: ${productoEncontrado.cantidad}, precio: $${productoEncontrado.precio}`);
     }else alert(`El producto ${elementoBuscado} no se encontró.`)
-    console.log(productoEncontrado);
-
+   
 });
 
 
@@ -193,8 +204,8 @@ const mostrarInventario = () => {
         //!BOTON REMOVER
         let buttonRemove = document.createElement("IMG");
         buttonRemove.addEventListener("click",()=>{
-            let opcion = window.confirm("¿Esta seguro de eliminar este producto?");
-            if (opcion==true){
+            
+            if (window.confirm("¿Esta seguro de eliminar este producto?")){
                 alert("Producto eliminado correctamente!");
                 container.removeChild(div);
                 arrayInfo.splice(index,1); 
@@ -207,8 +218,6 @@ const mostrarInventario = () => {
         buttonRemove.setAttribute("src","images/remove.png");
         buttonRemove.setAttribute("class","img-buttons");
     
-        
-       
         divButtons.appendChild(buttonAdd);
         divButtons.appendChild(buttonDel);
         divButtons.appendChild(buttonRemove);
