@@ -183,11 +183,17 @@ botonCategoria.addEventListener("click",()=>{
 let contador=0;
 let pos=0;
 const mostrarInventario = () => {
-    let div = document.createElement("DIV");
-    div.classList.add("test");
+   
+    if(container.hasChildNodes){
+        let nodes = container.childNodes;
+        while(container.firstChild){
+            container.removeChild(container.firstChild);
+        }
+    }
     
     arrayInfo.forEach((i,index)=>{
-       
+        let div = document.createElement("DIV");
+        div.classList.add("test");
         div.innerHTML = "";
 
         let li = document.createElement("LI");
